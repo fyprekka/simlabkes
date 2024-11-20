@@ -13,15 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('pemeriksaan', function (Blueprint $table) {
             $table->id();
+            $table->string('kode_pemeriksaan')->unique(); // Nomor Rekam Medis
             $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->foreignId('role_id')->constrained('role')->onDelete('cascade'); // Relasi ke tabel role
-            $table->timestamps();
-            $table->rememberToken();
-            $table->timestamps();
+            $table->string('harga');
         });
     }
 
@@ -32,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('pemeriksaan');
     }
 };
